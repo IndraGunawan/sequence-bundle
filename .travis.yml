@@ -21,4 +21,4 @@ install:
     - if [[ $deps = 'low' ]]; then composer update --prefer-dist --no-progress --no-suggest --prefer-stable --prefer-lowest --ansi; fi
 
 script:
-    - ./vendor/bin/phpunit --coverage-text --coverage-clover=coverage.clover
+    - ./vendor/bin/phpunit --coverage-text
