@@ -1,0 +1,32 @@
+{
+    "name": "indragunawan/sequence-bundle",
+    "description": "Sequence Implementation",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Indra Gunawan",
+            "email": "hello@indra.my.id"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Indragunawan\\SequenceBundle\\": ""
+        },
+        "exclude-from-classmap": [
+            "Tests/"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "require": {
+        "php": "^7.1.3",
+        "doctrine/doctrine-bundle": "^1.6",
+        "doctrine/orm": "^2.4.5",
+        "symfony/framework-bundle": "^3.4||^4.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.1"
+    }
+}

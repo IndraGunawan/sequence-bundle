@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services
+        http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="indragunawan_sequence.utils.placeholder_replacer.class">Indragunawan\SequenceBundle\Utils\PlaceholderReplacer</parameter>
+    </parameters>
+
+    <services>
+        <defaults public="false" autowire="false" />
+
+        <service id="indragunawan_sequence.sequence_provider.entity" class="Indragunawan\SequenceBundle\Provider\EntitySequenceProvider">
+            <argument key="$registry" type="service" id="doctrine" />
+            <argument key="$managerName" type="string" />
+            <argument key="$entityClass" type="string" />
+        </service>
+
+        <service id="indragunawan_sequence.utils.placeholder_replacer" class="%indragunawan_sequence.utils.placeholder_replacer.class%" />
+
+        <service id="indragunawan_sequence.sequence_manager" class="Indragunawan\SequenceBundle\Services\SequenceManager">
+            <argument key="$provider" type="service" id="indragunawan_sequence.sequence_provider.entity" />
+            <argument key="$placeholderReplacer" type="service" id="indragunawan_sequence.utils.placeholder_replacer" />
+        </service>
+
+        <service id="Indragunawan\SequenceBundle\Services\SequenceManagerInterface" alias="indragunawan_sequence.sequence_manager" />
+    </services>
+</container>

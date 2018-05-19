@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping
+                   https://raw.github.com/doctrine/doctrine2/master/doctrine-mapping.xsd">
+
+    <mapped-superclass name="Indragunawan\SequenceBundle\Model\Sequence">
+        <field name="name" column="name" type="string" length="255" unique="true"/>
+        <field name="format" column="format" type="string" length="255" nullable="true" />
+        <field name="lastValue" column="last_value" type="integer" nullable="true" />
+        <field name="startValue" column="start_value" type="integer" />
+        <field name="incrementBy" column="increment_by" type="integer" />
+        <field name="resetEvery" column="reset_every" type="integer" nullable="true" />
+        <field name="lastReset" column="last_reset" type="datetime" nullable="true" />
+    </mapped-superclass>
+
+</doctrine-mapping>
