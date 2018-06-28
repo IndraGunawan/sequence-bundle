@@ -10,7 +10,6 @@
         <field name="lastValue" column="last_value" type="integer" nullable="true" />
         <field name="startValue" column="start_value" type="integer" />
         <field name="incrementBy" column="increment_by" type="integer" />
-        <field name="resetEvery" column="reset_every" type="integer" nullable="true" />
         <field name="lastReset" column="last_reset" type="datetime" nullable="true" />
     </mapped-superclass>
 

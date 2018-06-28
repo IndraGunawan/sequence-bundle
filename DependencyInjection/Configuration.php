@@ -48,7 +48,7 @@ class Configuration implements ConfigurationInterface
                         ->isRequired()
                         ->cannotBeEmpty()
                     ->end()
-                    ->scalarNode('manager_name')->cannotBeEmpty()->defaultNull()->end()
+                    ->scalarNode('manager_name')->cannotBeEmpty()->defaultValue('default')->end()
                 ->end()
             ->end()
         ;

@@ -60,11 +60,6 @@ class SequenceTestEntity extends BaseSequence
     protected $incrementBy;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    protected $resetEvery;
-
-    /**
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $lastReset;

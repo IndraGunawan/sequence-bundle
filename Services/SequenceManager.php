@@ -57,7 +57,28 @@ final class SequenceManager implements SequenceManagerInterface
         return $this->placeholderReplacer->replacePlaceholder($sequence->getFormat(), $this->getSequenceLastValue($sequence), $replacementPlaceholders);
     }
 
-    private function getSequence(string $name, array $criteria = [], bool $lock = true)
+    /**
+     * {@inheritdoc}
+     */
+    public function resetSequence(string $name, array $criteria = []): void
+    {
+        $sequence = $this->getSequence($name, $criteria);
+        $sequence->setLastValue(null);
+        $sequence->setLastReset(new \DateTime());
+    }
+
+    /**
+     * Fetch the Sequence model.
+     *
+     * @param string $name
+     * @param array  $criteria
+     * @param bool   $lock
+     *
+     * @return SequenceInterface
+     *
+     * @throws SequenceNotFoundException
+     */
+    private function getSequence(string $name, array $criteria = [], bool $lock = true): SequenceInterface
     {
         $sequence = $this->provider->getSequence($name, $criteria, $lock);
         if (null === $sequence) {
@@ -67,11 +88,25 @@ final class SequenceManager implements SequenceManagerInterface
         return $sequence;
     }
 
+    /**
+     * Get last value of the Sequence.
+     *
+     * @param SequenceInterface $sequence
+     *
+     * @return int
+     */
     private function getSequenceLastValue(SequenceInterface $sequence): int
     {
         return $sequence->getLastValue() ?: $sequence->getStartValue();
     }
 
+    /**
+     * Get next value of the Sequence.
+     *
+     * @param SequenceInterface $sequence
+     *
+     * @return int
+     */
     private function getSequenceNextValue(SequenceInterface $sequence): int
     {
         if (!$sequence->getLastValue()) {

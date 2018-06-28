@@ -20,13 +20,25 @@ interface SequenceInterface
 {
     public function getName(): ?string;
 
+    public function setName(string $name): self;
+
     public function getFormat(): ?string;
+
+    public function setFormat(?string $format): self;
 
     public function getLastValue(): ?int;
 
+    public function setLastValue(?int $lastValue): self;
+
     public function getStartValue(): ?int;
+
+    public function setStartValue(int $startValue): self;
 
     public function getIncrementBy(): ?int;
 
-    public function getResetEvery(): ?int;
+    public function setIncrementBy(int $incrementBy): self;
+
+    public function getLastReset(): ?\DateTime;
+
+    public function setLastReset(?\DateTime $lastReset): self;
 }

@@ -23,7 +23,6 @@ class Sequence implements SequenceInterface
     protected $lastValue;
     protected $startValue;
     protected $incrementBy;
-    protected $resetEvery;
     protected $lastReset;
 
     public function getName(): ?string
@@ -31,7 +30,7 @@ class Sequence implements SequenceInterface
         return $this->name;
     }
 
-    public function setName(string $name): self
+    public function setName(string $name): SequenceInterface
     {
         $this->name = $name;
 
@@ -43,7 +42,7 @@ class Sequence implements SequenceInterface
         return $this->format;
     }
 
-    public function setFormat(?string $format): self
+    public function setFormat(?string $format): SequenceInterface
     {
         $this->format = $format;
 
@@ -55,7 +54,7 @@ class Sequence implements SequenceInterface
         return $this->lastValue;
     }
 
-    public function setLastValue(?int $lastValue): self
+    public function setLastValue(?int $lastValue): SequenceInterface
     {
         $this->lastValue = $lastValue;
 
@@ -67,7 +66,7 @@ class Sequence implements SequenceInterface
         return $this->startValue;
     }
 
-    public function setStartValue(int $startValue): self
+    public function setStartValue(int $startValue): SequenceInterface
     {
         $this->startValue = $startValue;
 
@@ -79,21 +78,9 @@ class Sequence implements SequenceInterface
         return $this->incrementBy;
     }
 
-    public function setIncrementBy(int $incrementBy): self
+    public function setIncrementBy(int $incrementBy): SequenceInterface
     {
         $this->incrementBy = $incrementBy;
-
-        return $this;
-    }
-
-    public function getResetEvery(): ?int
-    {
-        return $this->resetEvery;
-    }
-
-    public function setResetEvery(?int $resetEvery): self
-    {
-        $this->resetEvery = $resetEvery;
 
         return $this;
     }
@@ -103,7 +90,7 @@ class Sequence implements SequenceInterface
         return $this->lastReset;
     }
 
-    public function setLastReset(?\DateTime $lastReset): self
+    public function setLastReset(?\DateTime $lastReset): SequenceInterface
     {
         $this->lastReset = $lastReset;
 

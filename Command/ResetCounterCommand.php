@@ -13,44 +13,48 @@ declare(strict_types=1);
 
 namespace Indragunawan\SequenceBundle\Command;
 
+use Doctrine\ORM\EntityManager;
+use Indragunawan\SequenceBundle\Services\SequenceManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
- * This class contains the configuration information for the bundle.
- *
  * @author Indra Gunawan <hello@indra.my.id>
  */
 class ResetCounterCommand extends Command
 {
     protected static $defaultName = 'indragunawan:sequence:reset-counter';
+    private $em;
+    private $sequenceManager;
+
+    public function __construct(EntityManager $em, SequenceManagerInterface $sequenceManager)
+    {
+        parent::__construct();
+
+        $this->em = $em;
+        $this->sequenceManager = $sequenceManager;
+    }
 
     protected function configure()
     {
         $this
-            ->setDescription('Add a short description for your command')
-            ->addArgument('arg1', InputArgument::OPTIONAL, 'Argument description')
-            ->addOption('option1', null, InputOption::VALUE_NONE, 'Option description')
+            ->setDescription('Reset the sequences counter when it is time.')
+            ->addArgument('sequence_name', InputArgument::REQUIRED, 'Sequence name.')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
+        $sequenceName = $input->getArgument('sequence_name');
 
-        if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
-        }
+        $this->em->transactional(function () use ($sequenceName) {
+            $this->sequenceManager->resetSequence($sequenceName);
+        });
 
-        if ($input->getOption('option1')) {
-            // ...
-        }
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
+        $io->success(sprintf('"%s" sequence successfully reset.', $sequenceName));
     }
 }

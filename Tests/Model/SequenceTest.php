@@ -30,7 +30,6 @@ class SequenceTest extends TestCase
         $sequence->setStartValue(1);
         $sequence->setIncrementBy(2);
         $sequence->setIncrementBy(2);
-        $sequence->setResetEvery(60);
 
         $lastReset = new \DateTime();
         $sequence->setLastReset($lastReset);
@@ -40,7 +39,6 @@ class SequenceTest extends TestCase
         self::assertSame(100, $sequence->getLastValue());
         self::assertSame(1, $sequence->getStartValue());
         self::assertSame(2, $sequence->getIncrementBy());
-        self::assertSame(60, $sequence->getResetEvery());
         self::assertSame($lastReset, $sequence->getLastReset());
     }
 }

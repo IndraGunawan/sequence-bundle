@@ -16,6 +16,7 @@ namespace Indragunawan\SequenceBundle\DependencyInjection;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 
 /**
@@ -35,6 +36,10 @@ class IndragunawanSequenceExtension extends ConfigurableExtension
         $container->getDefinition('indragunawan_sequence.sequence_provider.doctrine_orm')
             ->setArgument('$entityClass', $mergedConfig['orm']['class'])
             ->setArgument('$managerName', $mergedConfig['orm']['manager_name'])
+        ;
+
+        $container->getDefinition('indragunawan_sequence.command.reset_counter')
+            ->setArgument('$em', new Reference(sprintf('doctrine.orm.%s_entity_manager', $mergedConfig['orm']['manager_name'])))
         ;
     }
 }

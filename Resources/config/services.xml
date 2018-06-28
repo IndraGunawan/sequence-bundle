@@ -27,6 +27,8 @@
         <service id="Indragunawan\SequenceBundle\Services\SequenceManagerInterface" alias="indragunawan_sequence.sequence_manager" />
 
         <service id="indragunawan_sequence.command.reset_counter" class="Indragunawan\SequenceBundle\Command\ResetCounterCommand">
+            <argument key="$em" />
+            <argument key="$sequenceManager" type="service" id="indragunawan_sequence.sequence_manager" />
             <tag name="console.command" command="indragunawan:sequence:reset-counter" />
         </service>
     </services>
