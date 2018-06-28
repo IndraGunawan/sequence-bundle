@@ -32,9 +32,9 @@ class IndragunawanSequenceExtension extends ConfigurableExtension
 
         $loader->load('services.xml');
 
-        $container->getDefinition('indragunawan_sequence.sequence_provider.entity')
-            ->setArgument('$entityClass', $mergedConfig['entity']['class'])
-            ->setArgument('$managerName', $mergedConfig['entity']['manager_name'])
+        $container->getDefinition('indragunawan_sequence.sequence_provider.doctrine_orm')
+            ->setArgument('$entityClass', $mergedConfig['orm']['class'])
+            ->setArgument('$managerName', $mergedConfig['orm']['manager_name'])
         ;
     }
 }

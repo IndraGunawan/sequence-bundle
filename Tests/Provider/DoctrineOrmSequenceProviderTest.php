@@ -16,7 +16,7 @@ namespace Indragunawan\SequenceBundle\Tests\Provider;
 use Doctrine\ORM\Tools\SchemaTool;
 use Doctrine\ORM\TransactionRequiredException;
 use Indragunawan\SequenceBundle\Model\SequenceInterface;
-use Indragunawan\SequenceBundle\Provider\EntitySequenceProvider;
+use Indragunawan\SequenceBundle\Provider\DoctrineOrmSequenceProvider;
 use Indragunawan\SequenceBundle\Tests\Fixtures\SequenceTestEntity;
 use PHPUnit\Framework\TestCase;
 use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
@@ -24,14 +24,14 @@ use Symfony\Bridge\Doctrine\Test\DoctrineTestHelper;
 /**
  * @author Indra Gunawan <hello@indra.my.id>
  */
-class EntitySequenceProviderTest extends TestCase
+class DoctrineOrmSequenceProviderTest extends TestCase
 {
     public function testSequenceNotFound()
     {
         $em = DoctrineTestHelper::createTestEntityManager();
         $this->createSchema($em);
 
-        $provider = new EntitySequenceProvider($this->getManager($em), SequenceTestEntity::class);
+        $provider = new DoctrineOrmSequenceProvider($this->getManager($em), SequenceTestEntity::class);
 
         self::assertNull($provider->getSequence('order', [], false));
     }
@@ -44,7 +44,7 @@ class EntitySequenceProviderTest extends TestCase
         $em = DoctrineTestHelper::createTestEntityManager();
         $this->createSchema($em);
 
-        $provider = new EntitySequenceProvider($this->getManager($em), SequenceTestEntity::class);
+        $provider = new DoctrineOrmSequenceProvider($this->getManager($em), SequenceTestEntity::class);
         $provider->getSequence('order');
     }
 
@@ -61,7 +61,7 @@ class EntitySequenceProviderTest extends TestCase
         $em->persist($seq);
         $em->flush();
 
-        $provider = new EntitySequenceProvider($this->getManager($em), SequenceTestEntity::class);
+        $provider = new DoctrineOrmSequenceProvider($this->getManager($em), SequenceTestEntity::class);
 
         $sequence = $em->transactional(function () use ($provider) {
             return $provider->getSequence('order', []);
@@ -94,7 +94,7 @@ class EntitySequenceProviderTest extends TestCase
         $em->persist($seq2);
         $em->flush();
 
-        $provider = new EntitySequenceProvider($this->getManager($em), SequenceTestEntity::class);
+        $provider = new DoctrineOrmSequenceProvider($this->getManager($em), SequenceTestEntity::class);
 
         $sequence = $em->transactional(function () use ($provider) {
             return $provider->getSequence('order', ['org' => 'org2']);

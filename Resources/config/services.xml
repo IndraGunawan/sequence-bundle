@@ -11,7 +11,7 @@
     <services>
         <defaults public="false" autowire="false" />
 
-        <service id="indragunawan_sequence.sequence_provider.entity" class="Indragunawan\SequenceBundle\Provider\EntitySequenceProvider">
+        <service id="indragunawan_sequence.sequence_provider.doctrine_orm" class="Indragunawan\SequenceBundle\Provider\DoctrineOrmSequenceProvider">
             <argument key="$registry" type="service" id="doctrine" />
             <argument key="$managerName" type="string" />
             <argument key="$entityClass" type="string" />
@@ -20,10 +20,14 @@
         <service id="indragunawan_sequence.utils.placeholder_replacer" class="%indragunawan_sequence.utils.placeholder_replacer.class%" />
 
         <service id="indragunawan_sequence.sequence_manager" class="Indragunawan\SequenceBundle\Services\SequenceManager">
-            <argument key="$provider" type="service" id="indragunawan_sequence.sequence_provider.entity" />
+            <argument key="$provider" type="service" id="indragunawan_sequence.sequence_provider.doctrine_orm" />
             <argument key="$placeholderReplacer" type="service" id="indragunawan_sequence.utils.placeholder_replacer" />
         </service>
 
         <service id="Indragunawan\SequenceBundle\Services\SequenceManagerInterface" alias="indragunawan_sequence.sequence_manager" />
+
+        <service id="indragunawan_sequence.command.reset_counter" class="Indragunawan\SequenceBundle\Command\ResetCounterCommand">
+            <tag name="console.command" command="indragunawan:sequence:reset-counter" />
+        </service>
     </services>
 </container>

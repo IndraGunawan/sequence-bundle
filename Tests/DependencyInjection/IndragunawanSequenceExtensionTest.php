@@ -57,7 +57,7 @@ class IndragunawanSequenceExtensionTest extends TestCase
     {
         $config = [
             [
-                'entity' => [
+                'orm' => [
                     'class' => SequenceTestEntity::class,
                 ],
             ],

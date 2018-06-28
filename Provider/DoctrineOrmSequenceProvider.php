@@ -21,7 +21,7 @@ use Indragunawan\SequenceBundle\Model\SequenceInterface;
 /**
  * @author Indra Gunawan <hello@indra.my.id>
  */
-final class EntitySequenceProvider implements SequenceProviderInterface
+final class DoctrineOrmSequenceProvider implements SequenceProviderInterface
 {
     private $registry;
     private $entityClass;

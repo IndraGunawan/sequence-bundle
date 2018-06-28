@@ -60,7 +60,7 @@ class ConfigurationTest extends TestCase
             $this->configuration,
             [
                 [
-                    'entity' => [
+                    'orm' => [
                         'class' => \DateTime::class,
                     ],
                 ],

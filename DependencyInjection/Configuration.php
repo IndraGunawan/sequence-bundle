@@ -34,7 +34,7 @@ class Configuration implements ConfigurationInterface
 
         $rootNode
             ->children()
-            ->arrayNode('entity')
+            ->arrayNode('orm')
                 ->isRequired()
                 ->children()
                     ->scalarNode('class')
