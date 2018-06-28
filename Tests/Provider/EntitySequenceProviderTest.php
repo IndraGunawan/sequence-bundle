@@ -73,30 +73,6 @@ class EntitySequenceProviderTest extends TestCase
         self::assertSame(2, $sequence->getIncrementBy());
     }
 
-    public function testTransactional()
-    {
-        $em = DoctrineTestHelper::createTestEntityManager();
-        $this->createSchema($em);
-
-        $seq = new SequenceTestEntity(1);
-        $seq->setName('order');
-        $seq->setStartValue(1);
-        $seq->setIncrementBy(2);
-
-        $em->persist($seq);
-        $em->flush();
-
-        $provider = new EntitySequenceProvider($this->getManager($em), SequenceTestEntity::class);
-
-        $sequence = $provider->transactional(function () use ($provider) {
-            $seq = $provider->getSequence('order', []);
-
-            return $seq->getName();
-        });
-
-        self::assertSame('order', $sequence);
-    }
-
     public function testWithCriteria()
     {
         $em = DoctrineTestHelper::createTestEntityManager();

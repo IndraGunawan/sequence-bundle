@@ -34,6 +34,9 @@ final class EntitySequenceProvider implements SequenceProviderInterface
         $this->managerName = $managerName;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getSequence(string $name, array $criteria = [], bool $lock = true): ?SequenceInterface
     {
         $repository = $this->getRepository();
@@ -63,11 +66,6 @@ final class EntitySequenceProvider implements SequenceProviderInterface
             ->setMaxResults(1)
             ->getOneOrNullResult()
         ;
-    }
-
-    public function transactional(\Closure $func): string
-    {
-        return $this->getObjectManager()->transactional($func);
     }
 
     private function getObjectManager(): EntityManager

@@ -20,5 +20,13 @@ use Doctrine\Common\Collections\Criteria;
  */
 interface SequenceCriteriaInterface
 {
+    /**
+     * Custom criteria.
+     *
+     * @param string $name
+     * @param array  $criteria
+     *
+     * @return Criteria
+     */
     public function getSequenceCriteria(string $name, array $criteria = []): Criteria;
 }

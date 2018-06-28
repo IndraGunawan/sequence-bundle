@@ -18,9 +18,25 @@ namespace Indragunawan\SequenceBundle\Services;
  */
 interface SequenceManagerInterface
 {
+    /**
+     * Get next value of a sequence.
+     *
+     * @param string $name
+     * @param array  $replacementPlaceholders
+     * @param array  $criteria
+     *
+     * @return string
+     */
     public function getNextValue(string $name, array $replacementPlaceholders = [], array $criteria = []): string;
 
-    public function getTransactionalNextValue(string $name, array $replacementPlaceholders = [], array $criteria = []): string;
-
+    /**
+     * Get last value of a sequence.
+     *
+     * @param string $name
+     * @param array  $replacementPlaceholders
+     * @param array  $criteria
+     *
+     * @return string
+     */
     public function getLastValue(string $name, array $replacementPlaceholders = [], array $criteria = []): string;
 }

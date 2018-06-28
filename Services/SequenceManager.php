@@ -32,6 +32,9 @@ final class SequenceManager implements SequenceManagerInterface
         $this->placeholderReplacer = $placeholderReplacer;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getNextValue(string $name, array $replacementPlaceholders = [], array $criteria = []): string
     {
         $sequence = $this->getSequence($name, $criteria);
@@ -44,13 +47,9 @@ final class SequenceManager implements SequenceManagerInterface
         return (string) $value;
     }
 
-    public function getTransactionalNextValue(string $name, array $replacementPlaceholders = [], array $criteria = []): string
-    {
-        return $this->provider->transactional(function () use ($name, $replacementPlaceholders, $criteria) {
-            return $this->getNextValue($name, $replacementPlaceholders, $criteria);
-        });
-    }
-
+    /**
+     * {@inheritdoc}
+     */
     public function getLastValue(string $name, array $replacementPlaceholders = [], array $criteria = []): string
     {
         $sequence = $this->getSequence($name, $criteria, false);
