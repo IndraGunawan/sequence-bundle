@@ -15,8 +15,6 @@ If your project already uses Symfony Flex, execute this command to download, reg
 composer require indragunawan/sequence-bundle
 ```
 
-If you install without using Symfony Flex, first add the bundle by using composer then enable the bundle by adding `new Indragunawan\SequenceBundle\IndragunawanSequenceBundle()` to the list of registered bundles in the app/AppKernel.php file of your project
-
 Installing without ``Symfony Flex``, you must enable the bundle in the kernel:
 
 ```php
@@ -122,6 +120,8 @@ $ php bin/console doctrine:schema:update --force
 | INV/{{NUMBER\|3\|0}}/{{ABC}} | 1, ['ABC'=>'TEST'] | INV/001/TEST |
 | INV/{{NUMBER\|3\|0}} | 1 | INV/001 |
 | INV/{{NUMBER\|4\|A}} | 1 | INV/AAA1 |
+
+another example can be see in ``Tests/Utils/PlaceholderReplacerTest.php``
 
 ### SequenceManager
 
