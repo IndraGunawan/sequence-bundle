@@ -81,14 +81,14 @@ $ php bin/console doctrine:schema:update --force
 
 #### Insert your sequence manually to sequence table in database
 
-| Field | Data Type | Required | Properties |
-| ----- | --------- | -------- | ---------- |
-| name | string | true | unique |
-| format | string | false | - |
-| last_value | int | false | - |
-| start_value | int | true | - |
-| increment_by | int | true | - |
-| last_reset | datetime | false | - |
+| Field | Data Type | Required | Properties | Description |
+| ----- | --------- | -------- | ---------- | ----------- |
+| name | string | true | unique | Sequence name that use while you call in service manager |
+| format | string | false | - | The format of text or string you want to be generate by service manager |
+| last_value | int | false | - | The last value of the sequence |
+| start_value | int | true | - | The start value for the sequence |
+| increment_by | int | true | - | The increment of sequence value |
+| last_reset | datetime | false | - | The date and time that sequence last restart |
 
 ### Format
 #### For format you can see table bellow:
