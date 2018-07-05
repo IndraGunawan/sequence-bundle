@@ -126,4 +126,27 @@ class SequenceManagerTest extends TestCase
         self::assertSame('13', $nextVal);
         self::assertSame(13, $seq->getLastValue());
     }
+
+    public function testResetSequence()
+    {
+        $seq = new SequenceTestEntity(1);
+        $seq
+            ->setStartValue(10)
+            ->setLastValue(13)
+            ->setIncrementBy(5);
+
+        $provider = $this->createMock('Indragunawan\SequenceBundle\Provider\SequenceProviderInterface');
+        $provider
+            ->expects($this->once())
+            ->method('getSequence')
+            ->with('order', [])
+            ->willReturn($seq);
+
+        $replacer = $this->createMock('Indragunawan\SequenceBundle\Utils\PlaceholderReplacer');
+
+        $manager = new SequenceManager($provider, $replacer);
+        $manager->resetSequence('order');
+
+        self::assertNull($seq->getLastValue());
+    }
 }
