@@ -8,28 +8,15 @@
   - [Reset Counter](#ResetCounter)
 
 ### Installation
-#### Step 1: Download IndraGunawanSequenceBundle
+#### Step 1: Download bundle
 If your project already uses Symfony Flex, execute this command to download, register and configure the bundle automatically:
 
 ```bash
 composer require indragunawan/sequence-bundle
 ```
 
-Installing without ``Symfony Flex``, you must enable the bundle in the kernel:
+If you install without using Symfony Flex, first add the bundle by using composer then enable the bundle by adding `new Indragunawan\SequenceBundle\IndragunawanSequenceBundle()` to the list of registered bundles in the app/AppKernel.php file of your project
 
-```php
-<?php
-// app/AppKernel.php
-
-public function registerBundle()
-{
-    $bundles = array(
-        // ...
-        new Indragunawan\SequenceBundle\IndragunawanSequenceBundle(),
-        // ...
-    );
-}
-```
 #### Step 2: Create your Sequence class
 
 ```php
@@ -40,6 +27,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Indragunawan\SequenceBundle\Model\Sequence as BaseSequence;
+
 /**
 * @ORM\Entity(repositoryClass="App\Repository\SequenceRepository")
 */
@@ -59,7 +47,7 @@ class Sequence extends BaseSequence
 }
 ```
 
-#### Step 3: Configure the SequenceBundle
+#### Step 3: Configure the bundle
 
 ```yaml
 # app/config/config.yml
@@ -89,7 +77,7 @@ $ php bin/console doctrine:schema:update --force
 | last_reset | datetime | false | - | The date and time that sequence last restart |
 
 ### Format
-#### For format you can see table bellow:
+#### For format you can see table below:
 
 | Format | Value | Result |
 | ------ | ------ | --- |
@@ -102,7 +90,7 @@ $ php bin/console doctrine:schema:update --force
 | {{NUMBER\|5\|A\|1}} | 6 | 6AAAA |
 | {{NUMBER\|5\|A\|2}} | 7 | AA7AA |
 | {{NUMBER\|lower\|5\|A}} | 8 | aaaa8 |
-| {{NUMBER\|ucfirst\|5\|a b}} | 9 | A ba9 |
+| {{NUMBER\|ucfirst\|5\|abc}} | 9 | Abca9 |
 | {{NUMBER\|upper\|5\|a\|2}} | 8 | AA8AA |
 | {{y}} | - | date('y') |
 | {{m}} | - | date('m') |
@@ -155,9 +143,9 @@ public function prePersist(LifecycleEventArgs $args)
 
 ### ResetCounter
 ```bash
-$ php bin/console indragunawan:sequence:reset-counter nama_sequence
+$ php bin/console indragunawan:sequence:reset-counter sequence_name
 ```
-
 You can put this command into Crontab for periodically restart the counter.
+
 ## License
 This bundle is under the MIT license. See the complete [license](LICENSE)
