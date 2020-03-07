@@ -43,6 +43,6 @@ class ResetCounterCommandTest extends TestCase
             'sequence_name' => 'order',
         ]);
 
-        self::assertContains('"order" sequence successfully reset.', $commandTester->getDisplay());
+        self::assertStringContainsString('"order" sequence successfully reset.', $commandTester->getDisplay());
     }
 }

@@ -37,7 +37,7 @@ class IndragunawanSequenceExtensionTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->container = new ContainerBuilder();
@@ -47,7 +47,7 @@ class IndragunawanSequenceExtensionTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         unset($this->container, $this->extension);
