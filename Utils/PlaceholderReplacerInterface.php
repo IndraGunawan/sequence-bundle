@@ -17,12 +17,6 @@ interface PlaceholderReplacerInterface
 {
     /**
      * Replace placeholder with actual values.
-     *
-     * @param string|null $placeholderText
-     * @param int         $number
-     * @param array       $replacementPlaceholders
-     *
-     * @return string
      */
     public function replacePlaceholder(?string $placeholderText, int $number, array $replacementPlaceholders = []): string;
 }

@@ -22,12 +22,6 @@ interface SequenceProviderInterface
 {
     /**
      * Fetch the Sequence.
-     *
-     * @param string $name
-     * @param array  $criteria
-     * @param bool   $lock
-     *
-     * @return SequenceInterface|null
      */
     public function getSequence(string $name, array $criteria = [], bool $lock = true): ?SequenceInterface;
 }

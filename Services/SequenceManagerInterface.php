@@ -21,12 +21,6 @@ interface SequenceManagerInterface
     /**
      * Get next value of a sequence.
      *
-     * @param string $name
-     * @param array  $replacementPlaceholders
-     * @param array  $criteria
-     *
-     * @return string
-     *
      * @throws Indragunawan\SequenceBundle\Exception\SequenceNotFoundException
      */
     public function getNextValue(string $name, array $replacementPlaceholders = [], array $criteria = []): string;
@@ -34,21 +28,12 @@ interface SequenceManagerInterface
     /**
      * Get last value of a sequence.
      *
-     * @param string $name
-     * @param array  $replacementPlaceholders
-     * @param array  $criteria
-     *
-     * @return string
-     *
      * @throws Indragunawan\SequenceBundle\Exception\SequenceNotFoundException
      */
     public function getLastValue(string $name, array $replacementPlaceholders = [], array $criteria = []): string;
 
     /**
      * Undocumented function.
-     *
-     * @param string $name
-     * @param array  $criteria
      *
      * @throws Indragunawan\SequenceBundle\Exception\SequenceNotFoundException
      */
