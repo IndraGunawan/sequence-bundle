@@ -35,7 +35,7 @@ class ConfigurationTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->configuration = new Configuration();
@@ -45,7 +45,7 @@ class ConfigurationTest extends TestCase
     /**
      * {@inheritdoc}
      */
-    protected function tearDown()
+    protected function tearDown(): void
     {
         parent::tearDown();
         unset($this->configuration, $this->processor);
