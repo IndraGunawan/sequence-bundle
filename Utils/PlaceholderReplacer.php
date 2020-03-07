@@ -26,11 +26,11 @@ class PlaceholderReplacer implements PlaceholderReplacerInterface
             return $number;
         }
 
-        return \preg_replace_callback('/\{\{ ?(\w++)(\|(lower|upper|ucwords|ucfirst|lcfirst))?(\|\d++\|[\s\w`~!@#$%^&*()_+{\\|;\':",.\/<>\?\-=]+(\|[0-2]++)?)? ?\}\}/', function ($m) use ($number, $replacementPlaceholders) {
+        return preg_replace_callback('/\{\{ ?(\w++)(\|(lower|upper|ucwords|ucfirst|lcfirst))?(\|\d++\|[\s\w`~!@#$%^&*()_+{\\|;\':",.\/<>\?\-=]+(\|[0-2]++)?)? ?\}\}/', function ($m) use ($number, $replacementPlaceholders) {
             $replacement = $this->getReplacement($m[1], $number, $replacementPlaceholders);
 
             if (isset($m[4])) {
-                list(, $padLength, $padString, $padType) = \array_map(function ($item) {
+                list(, $padLength, $padString, $padType) = array_map(function ($item) {
                     return trim($item);
                 }, explode('|', $m[4].'|'));
 
@@ -52,9 +52,9 @@ class PlaceholderReplacer implements PlaceholderReplacerInterface
     {
         if ('NUMBER' === $placeholder) {
             return $number;
-        } elseif (in_array($placeholder, ['d', 'D', 'j', 'l', 'F', 'm', 'M', 'n', 'Y', 'y', 'g', 'G', 'h', 'H', 'i', 's', 'c', 'U'], true)) {
+        } elseif (\in_array($placeholder, ['d', 'D', 'j', 'l', 'F', 'm', 'M', 'n', 'Y', 'y', 'g', 'G', 'h', 'H', 'i', 's', 'c', 'U'], true)) {
             return date($placeholder);
-        } elseif (in_array($placeholder, ['Rj', 'Rn', 'Ry', 'RY', 'Rg'], true)) {
+        } elseif (\in_array($placeholder, ['Rj', 'Rn', 'Ry', 'RY', 'Rg'], true)) {
             return RomanNumerals::toRoman((int) date(substr($placeholder, 1)));
         } elseif (isset($replacementPlaceholders[$placeholder])) {
             return $replacementPlaceholders[$placeholder];

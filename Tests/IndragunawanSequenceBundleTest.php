@@ -26,11 +26,11 @@ class IndragunawanSequenceBundleTest extends TestCase
     {
         $container = new ContainerBuilder();
 
-        $compilerPassCount = count($container->getCompilerPassConfig()->getPasses());
+        $compilerPassCount = \count($container->getCompilerPassConfig()->getPasses());
 
         $bundle = new IndragunawanSequenceBundle();
         $bundle->build($container);
 
-        self::assertSame($compilerPassCount + 1, count($container->getCompilerPassConfig()->getPasses()));
+        self::assertSame($compilerPassCount + 1, \count($container->getCompilerPassConfig()->getPasses()));
     }
 }

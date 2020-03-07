@@ -70,12 +70,6 @@ final class SequenceManager implements SequenceManagerInterface
     /**
      * Fetch the Sequence model.
      *
-     * @param string $name
-     * @param array  $criteria
-     * @param bool   $lock
-     *
-     * @return SequenceInterface
-     *
      * @throws SequenceNotFoundException
      */
     private function getSequence(string $name, array $criteria = [], bool $lock = true): SequenceInterface
@@ -90,10 +84,6 @@ final class SequenceManager implements SequenceManagerInterface
 
     /**
      * Get last value of the Sequence.
-     *
-     * @param SequenceInterface $sequence
-     *
-     * @return int
      */
     private function getSequenceLastValue(SequenceInterface $sequence): int
     {
@@ -102,10 +92,6 @@ final class SequenceManager implements SequenceManagerInterface
 
     /**
      * Get next value of the Sequence.
-     *
-     * @param SequenceInterface $sequence
-     *
-     * @return int
      */
     private function getSequenceNextValue(SequenceInterface $sequence): int
     {

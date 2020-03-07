@@ -112,7 +112,7 @@ class DoctrineOrmSequenceProviderTest extends TestCase
         $manager->expects($this->any())
             ->method('getManager')
             ->with($this->equalTo($name))
-            ->will($this->returnValue($em));
+            ->willReturn($em);
 
         return $manager;
     }
