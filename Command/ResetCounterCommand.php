@@ -56,5 +56,7 @@ class ResetCounterCommand extends Command
         });
 
         $io->success(sprintf('"%s" sequence successfully reset.', $sequenceName));
+
+        return 0;
     }
 }

@@ -60,7 +60,7 @@ class SequenceManagerTest extends TestCase
             ->expects($this->once())
             ->method('replacePlaceholder')
             ->with(null, 10, [])
-            ->willReturn(10);
+            ->willReturn("10");
 
         $manager = new SequenceManager($provider, $replacer);
         $nextVal = $manager->getNextValue('order');
@@ -89,7 +89,7 @@ class SequenceManagerTest extends TestCase
             ->expects($this->once())
             ->method('replacePlaceholder')
             ->with(null, 18, [])
-            ->willReturn(18);
+            ->willReturn("18");
 
         $manager = new SequenceManager($provider, $replacer);
         $nextVal = $manager->getNextValue('order');
@@ -118,7 +118,7 @@ class SequenceManagerTest extends TestCase
             ->expects($this->once())
             ->method('replacePlaceholder')
             ->with(null, 13, [])
-            ->willReturn(13);
+            ->willReturn("13");
 
         $manager = new SequenceManager($provider, $replacer);
         $nextVal = $manager->getLastValue('order');
