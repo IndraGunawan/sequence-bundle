@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Indragunawan\SequenceBundle\Provider;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use Doctrine\DBAL\LockMode;
 use Doctrine\ORM\EntityManager;
 use Indragunawan\SequenceBundle\Model\SequenceInterface;
@@ -27,7 +27,7 @@ final class DoctrineOrmSequenceProvider implements SequenceProviderInterface
     private $entityClass;
     private $managerName;
 
-    public function __construct(ManagerRegistry $registry, string $entityClass, ?string $managerName = null)
+    public function __construct(Registry $registry, string $entityClass, ?string $managerName = null)
     {
         $this->registry = $registry;
         $this->entityClass = $entityClass;
